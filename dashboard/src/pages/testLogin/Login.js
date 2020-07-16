@@ -7,10 +7,12 @@ import Widget from '../../components/Widget';
 import { loginUser } from '../../actions/user';
 import microsoft from '../../images/microsoft.png';
 
+const isAuthenticated = (token) => {
+    if (token) return true;
+}
+
 const Login = (props) => {
 
-    console.log(props)
-    console.log(props.dispatch)
     const [email, setEmail] = useState('admin@flatlogic.com')
     const [password, setPassword] = useState('password')
 
@@ -42,7 +44,6 @@ const Login = (props) => {
     const { from } = props.location.state || { from: { pathname: '/app' } }; // eslint-disable-line
 
     // cant access login page while logged in
-    console.log(typeof(isAuthenticated))
     if (isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
         return (
             <Redirect to={from} />
@@ -124,4 +125,19 @@ const Login = (props) => {
     }
 }
 
-export default Login;
+Login.propTypes = {
+    dispatch: PropTypes.bool.isRequired,
+    // dispatch: PropTypes.func.isRequired,
+}
+
+function mapStateToProps(state) {
+    return {
+        isFetching: state.auth.isFetching,
+        isAuthenticated: state.auth.isAuthenticated,
+        errorMessage: state.auth.errorMessage,
+    };
+}
+
+export {isAuthenticated};
+
+export default withRouter(connect(mapStateToProps)(Login));

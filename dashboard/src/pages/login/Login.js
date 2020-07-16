@@ -11,45 +11,49 @@ class Login extends React.Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired,
     };
-
+    
     static isAuthenticated(token) {
         if (token) return true;
     }
-
+    
     constructor(props) {
+        console.log("before")
+        console.log(props)
         super(props);
-
+        
         this.state = {
             email: 'admin@flatlogic.com',
             password: 'password',
         };
-
+        
         this.doLogin = this.doLogin.bind(this);
         this.changeEmail = this.changeEmail.bind(this);
         this.changePassword = this.changePassword.bind(this);
         this.signUp = this.signUp.bind(this);
+        console.log("after")
+        console.log(props)
     }
-
+    
     changeEmail(event) {
         this.setState({ email: event.target.value });
     }
-
+    
     changePassword(event) {
         this.setState({ password: event.target.value });
     }
-
+    
     doLogin(e) {
         e.preventDefault();
         this.props.dispatch(loginUser({ email: this.state.email, password: this.state.password }));
     }
-
+    
     signUp() {
         this.props.history.push('/register');
     }
-
+    
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/app' } }; // eslint-disable-line
-
+        
         // cant access login page while logged in
         if (Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
             return (

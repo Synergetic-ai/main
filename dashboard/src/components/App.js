@@ -5,18 +5,22 @@ import { HashRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 /* eslint-disable */
-import ErrorPage from '../pages/error';
+import ErrorPage from '../pages/testError';
+// import ErrorPage from '../pages/error';
 /* eslint-enable */
 
 import '../styles/theme.scss';
-import LayoutComponent from '../components/Layout';
-import Login from '../pages/testLogin';
+import LayoutComponent from '../components/testLayout';
+// import LayoutComponent from '../components/Layout';
+import Login, {isAuthenticated} from '../pages/testLogin';
 // import Login from '../pages/login';
-import Register from '../pages/register';
+import Register from '../pages/testRegister';
+// import Register from '../pages/register';
 import { logoutUser } from '../actions/user';
 
 const PrivateRoute = ({dispatch, component, ...rest }) => {
-    if (!Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
+    const token = JSON.parse(localStorage.getItem('authenticated'))
+    if (!isAuthenticated(token)) {
         dispatch(logoutUser());
         return (<Redirect to="/login"/>)
     } else {
@@ -30,7 +34,6 @@ const CloseButton = ({closeToast}) => <i onClick={closeToast} className="la la-c
 
 class App extends React.PureComponent {
     render() {
-        console.log('passing here')
     return (
         <div>
             <ToastContainer
