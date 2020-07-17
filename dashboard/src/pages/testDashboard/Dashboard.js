@@ -16,8 +16,6 @@ import Rickshaw from './components/rickshaw/Rickshaw';
 import Title from './components/title/Title'
 import Statistics from './components/statistics/Statistics'
 
-import AnimateNumber from 'react-animated-number';
-
 import s from './Dashboard.module.scss';
 
 import peopleA1 from '../../images/people/a1.jpg';
@@ -82,7 +80,7 @@ class Dashboard extends React.Component {
               title={<h5> Map
                       <span className="fw-semi-bold">&nbsp;Statistics</span></h5>} settings refresh close
             >
-              <Statistics status="live" />
+              <Statistics liveStatus="live" searchBtn={s.searchBtn} activeStatus="active" />
             </Widget>
           </Col>
 
