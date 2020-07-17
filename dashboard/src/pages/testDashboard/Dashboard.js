@@ -15,13 +15,12 @@ import Map from './components/am4chartMap/am4chartMap';
 import Rickshaw from './components/rickshaw/Rickshaw';
 import Title from './components/title/Title'
 import Statistics from './components/statistics/Statistics'
+import Userbase from './components/userbase/Userbase'
+import Traffic from './components/traffic/Traffic'
+import RandomValues from './components/randomValues/RandomValues'
+import ChatMessages from './components/chatMessages/ChatMessages'
 
 import s from './Dashboard.module.scss';
-
-import peopleA1 from '../../images/people/a1.jpg';
-import peopleA2 from '../../images/people/a2.jpg';
-import peopleA5 from '../../images/people/a5.jpg';
-import peopleA4 from '../../images/people/a4.jpg';
 
 class Dashboard extends React.Component {
 
@@ -92,30 +91,7 @@ class Dashboard extends React.Component {
               title={<h6> USERBASE GROWTH </h6>}
               close settings
             >
-              <div className="stats-row">
-                <div className="stat-item">
-                  <h6 className="name">Overall Growth</h6>
-                  <p className="value">76.38%</p>
-                </div>
-                <div className="stat-item">
-                  <h6 className="name">Montly</h6>
-                  <p className="value">10.38%</p>
-                </div>
-                <div className="stat-item">
-                  <h6 className="name">24h</h6>
-                  <p className="value">3.38%</p>
-                </div>
-              </div>
-              <Progress color="success" value="60" className="bg-custom-dark progress-xs" />
-              <p>
-                <small>
-                  <span className="circle bg-default text-white">
-                    <i className="fa fa-chevron-up" />
-                  </span>
-                </small>
-                <span className="fw-semi-bold">&nbsp;17% higher</span>
-                &nbsp;than last month
-              </p>
+              <Userbase overall={78} monthly={10.2} daily={0.42} delta={-17} progressValue={34}/>
             </Widget>
           </Col>
           <Col lg={4} xs={12}>
@@ -123,26 +99,7 @@ class Dashboard extends React.Component {
               title={<h6> TRAFFIC VALUES </h6>}
               close settings
             >
-              <div className="stats-row">
-                <div className="stat-item">
-                  <h6 className="name">Overall Values</h6>
-                  <p className="value">17 567 318</p>
-                </div>
-                <div className="stat-item">
-                  <h6 className="name">Montly</h6>
-                  <p className="value">55 120</p>
-                </div>
-                <div className="stat-item">
-                  <h6 className="name">24h</h6>
-                  <p className="value">9 695</p>
-                </div>
-              </div>
-              <Progress color="danger" value="60" className="bg-custom-dark progress-xs" />
-              <p>
-                <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small>
-                <span className="fw-semi-bold">&nbsp;8% lower</span>
-                &nbsp;than last month
-              </p>
+              <Traffic overall={17567318} monthly={55120} daily={9695} delta={8} progressValue={86}/>
             </Widget>
           </Col>
           <Col lg={4} xs={12}>
@@ -150,26 +107,7 @@ class Dashboard extends React.Component {
               title={<h6> RANDOM VALUES </h6>}
               close settings
             >
-              <div className="stats-row">
-                <div className="stat-item">
-                  <h6 className="name fs-sm">Overcome T.</h6>
-                  <p className="value">104.85%</p>
-                </div>
-                <div className="stat-item">
-                  <h6 className="name fs-sm">Takeoff Angle</h6>
-                  <p className="value">14.29&deg;</p>
-                </div>
-                <div className="stat-item">
-                  <h6 className="name fs-sm">World Pop.</h6>
-                  <p className="value">7,211M</p>
-                </div>
-              </div>
-              <Progress color="bg-primary" value="60" className="bg-custom-dark progress-xs" />
-              <p>
-                <small><span className="circle bg-default text-white"><i className="fa fa-plus" /></span></small>
-                <span className="fw-semi-bold">&nbsp;8 734 higher</span>
-                &nbsp;than last month
-              </p>
+              <RandomValues />
             </Widget>
           </Col>
 
@@ -181,55 +119,7 @@ class Dashboard extends React.Component {
               title={<h6><span className="badge badge-success">New</span> Messages</h6>}
               refresh close
             >
-              <div className="widget-body undo_padding">
-                <div className="list-group list-group-lg">
-                  <button className="list-group-item text-left">
-                    <span className="thumb-sm float-left mr">
-                      <img className="rounded-circle" src={peopleA2} alt="..." />
-                      <i className="status status-bottom bg-success" />
-                    </span>
-                    <div>
-                      <h6 className="m-0">Chris Gray</h6>
-                      <p className="help-block text-ellipsis m-0">Hey! What&apos;s up? So many times since we</p>
-                    </div>
-                  </button>
-                  <button className="list-group-item text-left">
-                    <span className="thumb-sm float-left mr">
-                      <img className="rounded-circle" src={peopleA4} alt="..." />
-                      <i className="status status-bottom bg-success" />
-                    </span>
-                    <div>
-                      <h6 className="m-0">Jamey Brownlow</h6>
-                      <p className="help-block text-ellipsis m-0">Good news coming tonight. Seems they agreed to
-                        proceed</p>
-                    </div>
-                  </button>
-                  <button className="list-group-item text-left">
-                    <span className="thumb-sm float-left mr">
-                      <img className="rounded-circle" src={peopleA1} alt="..." />
-                      <i className="status status-bottom bg-default" />
-                    </span>
-                    <div>
-                      <h6 className="m-0">Livia Walsh</h6>
-                      <p className="help-block text-ellipsis m-0">Check my latest email plz!</p>
-                    </div>
-                  </button>
-                  <button className="list-group-item text-left">
-                    <span className="thumb-sm float-left mr">
-                      <img className="rounded-circle" src={peopleA5} alt="..." />
-                      <i className="status status-bottom bg-danger" />
-                    </span>
-                    <div>
-                      <h6 className="m-0">Jaron Fitzroy</h6>
-                      <p className="help-block text-ellipsis m-0">What about summer break?</p>
-                    </div>
-                  </button>
-                </div>
-              </div>
-              <footer className="bg-widget-transparent mt">
-                <input type="search" className="form-control form-control-sm bg-custom-dark border-0" placeholder="Search" />
-              </footer>
-
+              <ChatMessages />
             </Widget>
           </Col>
 
